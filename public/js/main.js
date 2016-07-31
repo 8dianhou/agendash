@@ -98,7 +98,9 @@ $(function () {
       this.model.set('selected', !this.model.get('selected'))
     },
     render: function () {
-      this.$el.html(this.template(this.model.toJSON()))
+      var renderData = this.model.toJSON()
+      renderData.renderName = renderData.job.name + ':' +  (renderData.job.data.name || 'NULL')
+      this.$el.html(this.template(renderData))
       this.$el.toggleClass('active', this.model.get('selected'))
       return this
     }
